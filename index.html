@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="bot.svg">
 <style>
   :root{
     --ph:#49ff86; --ph-2:#1fd96a; --dim:#2f9e5c; --amber:#ffd167;
@@ -93,6 +94,16 @@
   .src{border:1px solid rgba(73,255,134,.5);padding:.22em .7em}
   .src:hover{background:rgba(73,255,134,.14)}
 
+  /* ---------- mascot ---------- */
+  .hero{display:flex;gap:clamp(12px,3vmin,44px);align-items:center;flex-wrap:wrap;margin-top:.2em}
+  .hero .htext{flex:1 1 340px;min-width:270px}
+  .bot{flex:0 0 auto;width:clamp(140px,25vmin,236px);height:auto;
+    filter:drop-shadow(0 0 20px rgba(255,180,0,.45)) drop-shadow(0 0 3px rgba(255,209,103,.6));
+    animation:bob 3.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-1.3deg)}50%{transform:translateY(-13px) rotate(1.3deg)}}
+  .bot .lid{transform-box:fill-box;transform-origin:center;animation:blinkLid 5.6s infinite}
+  @keyframes blinkLid{0%,90%,100%{transform:scaleY(0)}92%,96%{transform:scaleY(1)}}
+
   .stack{display:grid;grid-template-columns:120px 1fr;gap:.15em 1em}
   .stack b{color:var(--dim);font-weight:400;font-family:"Share Tech Mono",monospace;font-size:.72em}
   .contact{display:flex;gap:1.4em;flex-wrap:wrap;align-items:center;margin-top:.4em}
@@ -123,13 +134,58 @@
 
       <div id="main" class="hide">
         <div class="cmd">whoami</div>
-        <h1>TRENCH</h1>
-        <div class="role">backend developer — python · typescript · solana</div>
-        <p class="pitch">I build automation, data pipelines and on-chain tooling — the kind that runs
-        unattended and has to be right. <b>Currently open to backend / tooling / Solana roles.</b></p>
-        <div class="cta">
-          <a class="btn" href="https://github.com/TrenchyDev">▶ hire / github</a>
-          <a class="btn amber" href="#projects">↓ see the work</a>
+        <div class="hero">
+          <div class="htext">
+            <h1>TRENCH</h1>
+            <div class="role">backend developer — python · typescript · solana</div>
+            <p class="pitch">I build automation, data pipelines and on-chain tooling — the kind that runs
+            unattended and has to be right. <b>Currently open to backend / tooling / Solana roles.</b></p>
+            <div class="cta">
+              <a class="btn" href="https://github.com/TrenchyDev">▶ hire / github</a>
+              <a class="btn amber" href="#projects">↓ see the work</a>
+            </div>
+          </div>
+          <svg class="bot" viewBox="0 0 260 224" aria-hidden="true">
+            <defs>
+              <linearGradient id="gb" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffe98a"/><stop offset=".42" stop-color="#ffc61e"/><stop offset="1" stop-color="#e08600"/>
+              </linearGradient>
+              <linearGradient id="gk" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#ffd24a"/><stop offset="1" stop-color="#b96b00"/>
+              </linearGradient>
+              <linearGradient id="gf" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <g stroke="#12100c" stroke-width="5" stroke-linejoin="round">
+              <rect x="30" y="76" width="24" height="46" rx="9" fill="url(#gk)"/>
+              <rect x="206" y="76" width="24" height="46" rx="9" fill="url(#gk)"/>
+            </g>
+            <g stroke="#12100c" stroke-width="2.5" opacity=".55"><line x1="42" y1="80" x2="42" y2="118"/><line x1="218" y1="80" x2="218" y2="118"/></g>
+            <g fill="#14110c" stroke="#0a0906" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M44 150 q-22 4 -24 26 q-1 20 16 24 q14 3 20 -10 l6 -16 z"/>
+              <path d="M216 150 q22 4 24 26 q1 20 -16 24 q-14 3 -20 -10 l-6 -16 z"/>
+            </g>
+            <g stroke="#2a251c" stroke-width="3" stroke-linecap="round">
+              <line x1="30" y1="166" x2="48" y2="170"/><line x1="29" y1="180" x2="48" y2="183"/>
+              <line x1="230" y1="166" x2="212" y2="170"/><line x1="231" y1="180" x2="212" y2="183"/>
+            </g>
+            <rect x="48" y="34" width="164" height="126" rx="28" fill="url(#gb)" stroke="#12100c" stroke-width="6"/>
+            <rect x="48" y="34" width="164" height="126" rx="28" fill="url(#gf)"/>
+            <g fill="#12100c" opacity=".5">
+              <circle cx="66" cy="52" r="3"/><circle cx="194" cy="52" r="3"/><circle cx="66" cy="142" r="3"/><circle cx="194" cy="142" r="3"/>
+            </g>
+            <ellipse cx="110" cy="100" rx="29" ry="33" fill="#fff" stroke="#12100c" stroke-width="6"/>
+            <ellipse cx="150" cy="100" rx="29" ry="33" fill="#fff" stroke="#12100c" stroke-width="6"/>
+            <circle cx="117" cy="107" r="12.5" fill="#12100c"/><circle cx="143" cy="107" r="12.5" fill="#12100c"/>
+            <circle cx="112" cy="101" r="4.4" fill="#fff"/><circle cx="138" cy="101" r="4.4" fill="#fff"/>
+            <rect class="lid" x="82" y="67" width="58" height="66" rx="6" fill="#ffc61e"/>
+            <rect class="lid" x="122" y="67" width="58" height="66" rx="6" fill="#ffc61e"/>
+            <g transform="translate(88,158)">
+              <rect x="0" y="0" width="84" height="26" rx="7" fill="#14110c" stroke="#0a0906" stroke-width="3"/>
+              <text x="42" y="18" text-anchor="middle" font-family="'Share Tech Mono',monospace" font-size="14" fill="#ffd167" letter-spacing="1">trench</text>
+            </g>
+          </svg>
         </div>
 
         <hr>
