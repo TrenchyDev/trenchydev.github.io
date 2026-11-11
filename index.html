@@ -3,126 +3,192 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trench — ~/portfolio</title>
-<meta name="description" content="Trench — backend developer. Python, TypeScript, Solana. Automation, data pipelines, on-chain tooling.">
+<title>Trench — OPEN FOR WORK</title>
+<meta name="description" content="Trench — backend developer. Python, TypeScript, Solana. Open to work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ph:#43ff7d; --ph-dim:#2bbf5c; --amber:#ffcf6b; --screen:#07100a; --bezel:#232725;
+    --ph:#49ff86; --ph-2:#1fd96a; --dim:#2f9e5c; --amber:#ffd167;
+    --scr:#04100a; --bez:#1d211f; --bez2:#0e100f;
+    --bez:clamp(12px,2.2vmin,30px);
   }
   *{box-sizing:border-box}
-  html,body{margin:0;height:100%}
-  body{
-    background:#040705; background-image:radial-gradient(circle at 50% 40%, #0b1510, #040705 70%);
-    display:grid; place-items:center; padding:3vmin; min-height:100vh;
-    font:15px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; -webkit-font-smoothing:none;
+  html,body{height:100%;margin:0;overflow:hidden;background:#000}
+  body{font-family:"VT323",ui-monospace,Menlo,monospace;color:var(--ph);
+    -webkit-font-smoothing:none;font-size:clamp(18px,2.1vmin,23px);line-height:1.35;
+    text-shadow:0 0 6px rgba(73,255,134,.55), 0 0 1px rgba(73,255,134,.9)}
+  a{color:inherit;text-decoration:none}
+
+  /* ---------- the monitor fills the viewport ---------- */
+  .crt{position:fixed;inset:0;padding:var(--bez);display:flex;
+    background:
+      radial-gradient(120% 120% at 50% -10%, #3a3f3c, #1a1e1c 55%, #101312 100%);
+    box-shadow:inset 0 0 0 2px #4a504c, inset 0 0 40px #000;
   }
-  /* ---------- monitor ---------- */
-  .monitor{
-    width:min(940px,97vw); position:relative; border-radius:26px; padding:26px 26px 60px;
-    background:linear-gradient(160deg,#333735,#1b1e1c 60%,#141614);
-    box-shadow:0 40px 80px -30px #000, 0 2px 0 #4a4f4b inset, 0 -20px 40px -20px #000 inset;
-  }
-  .monitor::after{
-    content:"T R E N C H   ·   C R T - 1"; position:absolute; left:0; right:0; bottom:20px;
-    text-align:center; color:#7d837e; font-size:10px; letter-spacing:.42em;
-  }
-  .led{position:absolute; bottom:26px; right:30px; width:8px; height:8px; border-radius:50%;
-    background:var(--ph); box-shadow:0 0 10px var(--ph); animation:pulse 2.4s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .brass{position:absolute;inset:calc(var(--bez) - 6px);border-radius:20px;pointer-events:none;
+    box-shadow:0 0 0 2px #0a0c0b, 0 0 26px rgba(73,255,134,.10) inset}
+  .label{position:absolute;bottom:calc(var(--bez)*.22);left:50%;transform:translateX(-50%);
+    font-family:"Share Tech Mono",monospace;font-size:.62em;letter-spacing:.55em;color:#79807b;
+    text-shadow:none;white-space:nowrap}
+  .led{position:absolute;bottom:calc(var(--bez)*.30);right:calc(var(--bez)*.5);width:9px;height:9px;
+    border-radius:50%;background:var(--ph);box-shadow:0 0 12px var(--ph);animation:pulse 2.4s infinite}
+  .pwr{position:absolute;bottom:calc(var(--bez)*.26);left:calc(var(--bez)*.5);width:26px;height:26px;
+    border-radius:6px;background:linear-gradient(#2c302e,#151816);box-shadow:0 1px 0 #464b48,0 0 0 1px #0a0c0b;}
+
   /* ---------- screen ---------- */
-  .screen{
-    position:relative; background:var(--screen); border-radius:16px; overflow:hidden;
-    padding:clamp(22px,4.5vw,44px); min-height:min(72vh,660px);
-    box-shadow:inset 0 0 90px rgba(67,255,125,.09), inset 0 0 3px #000, 0 0 0 2px #0c130e;
-    animation:on .55s ease-out both;
-  }
-  @keyframes on{from{filter:brightness(3) saturate(.4); transform:scaleY(.5) scaleX(.9); opacity:0}
-               to{filter:none; transform:none; opacity:1}}
-  .scan,.vig,.flick{position:absolute; inset:0; pointer-events:none}
-  .scan{z-index:6; background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.30) 2px 4px)}
-  .vig{z-index:5; background:radial-gradient(130% 120% at 50% 45%,transparent 55%,rgba(0,0,0,.55))}
-  .flick{z-index:7; background:linear-gradient(rgba(67,255,125,.05),transparent); animation:flick 5s steps(2,end) infinite; opacity:.5}
-  @keyframes flick{0%,96%{opacity:.35}97%{opacity:.7}98%{opacity:.25}100%{opacity:.5}}
-  /* ---------- terminal ---------- */
-  .term{position:relative; z-index:8; color:var(--ph); text-shadow:0 0 7px rgba(67,255,125,.55); font-size:clamp(13px,1.55vw,15px)}
-  .term a{color:var(--amber); text-decoration:none; border-bottom:1px dashed rgba(255,207,107,.5)}
-  .term a:hover{border-bottom-style:solid; text-shadow:0 0 8px rgba(255,207,107,.7)}
-  .dim{color:var(--ph-dim); text-shadow:none}
-  .bar{color:#0a140d; background:var(--ph-dim); padding:0 6px}
-  .cur{display:inline-block; width:.6em; height:1.05em; background:var(--ph);
-    vertical-align:-.15em; box-shadow:0 0 9px var(--ph); animation:blink 1s steps(1) infinite}
-  @keyframes blink{50%{opacity:0}}
-  h1{font-size:clamp(20px,3.4vw,30px); margin:.35em 0 .1em; letter-spacing:.02em}
-  .role{color:var(--amber); text-shadow:0 0 7px rgba(255,207,107,.4)}
-  hr{border:0; border-top:1px dashed rgba(67,255,125,.28); margin:1.4em 0}
-  .cmd::before{content:"> "; color:var(--ph-dim)}
-  .cmd{color:var(--amber); text-shadow:0 0 7px rgba(255,207,107,.35); margin-top:1.4em}
-  .grid{display:grid; grid-template-columns:1fr 1fr; gap:.4em 2.2em}
-  @media(max-width:660px){.grid{grid-template-columns:1fr}}
-  .proj{margin:.15em 0}
-  .proj .live{color:var(--ph); border-bottom-color:var(--ph)}
-  .meta{color:var(--ph-dim); font-size:.86em}
-  .stack{display:grid; grid-template-columns:92px 1fr; gap:.15em .9em; margin:.2em 0}
-  .stack b{color:var(--ph-dim); font-weight:400}
-  .foot{margin-top:1.5em; display:flex; gap:1.4em; flex-wrap:wrap; justify-content:space-between}
+  .screen{position:relative;flex:1;border-radius:18px;overflow:hidden;background:var(--scr);
+    box-shadow:inset 0 0 120px rgba(73,255,134,.10), inset 0 0 4px #000, 0 0 0 3px #060a07,
+      0 6px 30px rgba(0,0,0,.6) inset;display:flex;flex-direction:column;
+    animation:on .6s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes on{from{filter:brightness(3.2) saturate(.3);transform:scaleY(.42) scaleX(.92);opacity:0}
+               to{filter:none;transform:none;opacity:1}}
+  .scan,.vig,.flick,.sweep{position:absolute;inset:0;pointer-events:none;z-index:9}
+  .scan{background:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0 2px,rgba(0,0,0,.32) 2px 4px)}
+  .vig{background:radial-gradient(125% 115% at 50% 45%,transparent 52%,rgba(0,0,0,.62))}
+  .flick{background:linear-gradient(rgba(73,255,134,.05),transparent);mix-blend-mode:screen;
+    animation:flick 6s steps(2,end) infinite}
+  @keyframes flick{0%,95%{opacity:.25}96%{opacity:.6}97%{opacity:.15}100%{opacity:.3}}
+  .sweep{background:linear-gradient(to bottom,transparent 0,rgba(73,255,134,.10) 48%,rgba(73,255,134,.16) 50%,rgba(73,255,134,.10) 52%,transparent 100%);
+    height:26%;top:-26%;animation:sweep 7s linear infinite}
+  @keyframes sweep{to{top:100%}}
+
+  /* ---------- content ---------- */
+  .scroll{position:relative;z-index:10;overflow:auto;padding:clamp(16px,3vmin,40px);flex:1;scrollbar-width:thin}
+  .scroll::-webkit-scrollbar{width:10px}.scroll::-webkit-scrollbar-thumb{background:#173;border-radius:0}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:1em;flex-wrap:wrap;
+    border:1px solid rgba(73,255,134,.35);padding:.35em .7em;margin-bottom:1.2em}
+  .hire{color:#04100a;background:var(--ph);padding:0 .5em;font-weight:400;
+    box-shadow:0 0 14px rgba(73,255,134,.7);animation:blink 1.15s steps(1) infinite}
+  @keyframes blink{50%{opacity:.35}}
+  .who{color:var(--dim);font-family:"Share Tech Mono",monospace;font-size:.72em;text-shadow:none}
+  h1{font-size:clamp(40px,9vmin,92px);margin:.05em 0 0;letter-spacing:.02em;line-height:.9}
+  .role{color:var(--amber);text-shadow:0 0 10px rgba(255,209,103,.5)}
+  .pitch{max-width:70ch;margin:.6em 0 0}
+  .cmd{color:var(--amber);text-shadow:0 0 8px rgba(255,209,103,.4);margin:1.4em 0 .7em}
+  .cmd::before{content:"trench@dev:~$ ";color:var(--dim)}
+  hr{border:0;border-top:1px dashed rgba(73,255,134,.28);margin:1.2em 0}
+
+  .cta{display:flex;gap:.7em;flex-wrap:wrap;margin:1em 0 0}
+  .btn{display:inline-block;border:1px solid var(--ph);padding:.28em .8em;letter-spacing:.04em;
+    transition:.12s;cursor:pointer}
+  .btn:hover{background:var(--ph);color:#04100a;box-shadow:0 0 18px rgba(73,255,134,.6);text-shadow:none}
+  .btn.amber{border-color:var(--amber);color:var(--amber)}
+  .btn.amber:hover{background:var(--amber);color:#120d02;box-shadow:0 0 18px rgba(255,209,103,.6)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(10px,1.6vmin,18px)}
+  .proj{border:1px solid rgba(73,255,134,.35);padding:1em;display:flex;flex-direction:column;gap:.5em;
+    background:rgba(73,255,134,.03);transition:.14s}
+  .proj:hover{border-color:var(--ph);background:rgba(73,255,134,.07);box-shadow:0 0 22px rgba(73,255,134,.18)}
+  .proj h3{margin:0;font-size:1.5em;letter-spacing:.02em}
+  .proj .desc{color:#bfe8cd;font-size:.95em}
+  .tags{display:flex;flex-wrap:wrap;gap:.4em}
+  .tags span{font-family:"Share Tech Mono",monospace;font-size:.62em;color:var(--dim);
+    border:1px solid rgba(73,255,134,.3);padding:.1em .5em;text-shadow:none}
+  .proj .row{margin-top:auto;display:flex;gap:.6em;flex-wrap:wrap}
+  .live{color:#04100a;background:var(--ph);border:1px solid var(--ph);padding:.22em .7em;
+    box-shadow:0 0 12px rgba(73,255,134,.4)}
+  .live:hover{box-shadow:0 0 22px rgba(73,255,134,.9)}
+  .src{border:1px solid rgba(73,255,134,.5);padding:.22em .7em}
+  .src:hover{background:rgba(73,255,134,.14)}
+
+  .stack{display:grid;grid-template-columns:120px 1fr;gap:.15em 1em}
+  .stack b{color:var(--dim);font-weight:400;font-family:"Share Tech Mono",monospace;font-size:.72em}
+  .contact{display:flex;gap:1.4em;flex-wrap:wrap;align-items:center;margin-top:.4em}
+  .big{font-size:clamp(24px,5vmin,46px);color:var(--amber);text-shadow:0 0 12px rgba(255,209,103,.45)}
+  footer{margin:2.5em 0 4em;color:var(--dim);font-family:"Share Tech Mono",monospace;font-size:.68em;text-shadow:none}
+  .cur{display:inline-block;width:.55em;height:1em;background:var(--ph);vertical-align:-.12em;
+    box-shadow:0 0 9px var(--ph);animation:blink 1s steps(1) infinite}
   .hide{opacity:0}
-  .fade{animation:fade .5s ease both}
-  @keyframes fade{from{opacity:0; transform:translateY(4px)}to{opacity:1; transform:none}}
+  .fade{animation:fade .6s ease both}@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1}}
 </style>
 </head>
 <body>
-<div class="monitor">
+<div class="crt">
+  <div class="brass"></div>
+  <div class="pwr"></div>
   <div class="led"></div>
-  <div class="screen">
-    <div class="vig"></div><div class="scan"></div><div class="flick"></div>
-    <div class="term">
-      <div id="boot" class="dim"></div>
-      <div id="main" class="hide">
-        <hr>
-        <div class="role">$ status --work</div>
-        <h1>Trench</h1>
-        <div class="dim">backend developer · python / typescript / solana</div>
-        <p>I build automation, data pipelines and on-chain tooling —
-        the kind that runs unattended and has to be right. Currently open to
-        backend / tooling / Solana roles.</p>
+  <div class="label">T R E N C H &nbsp;·&nbsp; C R T - 1</div>
 
-        <div class="cmd">ls ~/projects --long</div>
+  <div class="screen">
+    <div class="vig"></div><div class="scan"></div><div class="flick"></div><div class="sweep"></div>
+    <div class="scroll" id="scroll">
+      <div class="topbar">
+        <span><span class="hire">▮ OPEN FOR WORK</span></span>
+        <span class="who">full-time · contract · remote</span>
+      </div>
+
+      <div id="boot"></div>
+
+      <div id="main" class="hide">
+        <div class="cmd">whoami</div>
+        <h1>TRENCH</h1>
+        <div class="role">backend developer — python · typescript · solana</div>
+        <p class="pitch">I build automation, data pipelines and on-chain tooling — the kind that runs
+        unattended and has to be right. <b>Currently open to backend / tooling / Solana roles.</b></p>
+        <div class="cta">
+          <a class="btn" href="https://github.com/TrenchyDev">▶ hire / github</a>
+          <a class="btn amber" href="#projects">↓ see the work</a>
+        </div>
+
+        <hr>
+        <div class="cmd" id="projects">ls ~/projects/ &nbsp;<span class="who">— live demos, click to run</span></div>
         <div class="grid">
           <div class="proj">
-            <div>pumpfun-launcher/</div>
-            <div class="meta">dev buy + 16 jito-bundled buyers, auto-sell, vanity mints</div>
-            <div><a class="live" href="https://pumpfun-launcher-production-37a5.up.railway.app">[live]</a>
-                 <a href="https://github.com/TrenchyDev/trenchy-pumpfun-launcher-bundler-dashboard-react">[code]</a></div>
+            <h3>pumpfun-launcher</h3>
+            <div class="desc">Create a coin with a dev buy and up to 16 Jito-bundled buyers. Holder wallets, auto-sell, creator-fee claims, vanity mints.</div>
+            <div class="tags"><span>solana</span><span>jito</span><span>react</span><span>express</span></div>
+            <div class="row">
+              <a class="live" href="https://pumpfun-launcher-production-37a5.up.railway.app" target="_blank" rel="noopener">▶ RUN DEMO</a>
+              <a class="src" href="https://github.com/TrenchyDev/trenchy-pumpfun-launcher-bundler-dashboard-react" target="_blank" rel="noopener">&lt;/&gt; SOURCE</a>
+            </div>
           </div>
           <div class="proj">
-            <div>pons-launcher/</div>
-            <div class="meta">robinhood-chain coin launcher, wallets + live trades</div>
-            <div><a class="live" href="https://pons-launcher-production.up.railway.app">[live]</a>
-                 <a href="https://github.com/TrenchyDev">[code]</a></div>
+            <h3>pons-launcher</h3>
+            <div class="desc">Coin launcher for the Robinhood chain. One app: wallets, bundled dev buy, live trades, per-wallet selling.</div>
+            <div class="tags"><span>evm</span><span>robinhood</span><span>react</span></div>
+            <div class="row">
+              <a class="live" href="https://pons-launcher-production.up.railway.app" target="_blank" rel="noopener">▶ RUN DEMO</a>
+              <a class="src" href="https://github.com/TrenchyDev" target="_blank" rel="noopener">&lt;/&gt; SOURCE</a>
+            </div>
           </div>
           <div class="proj">
-            <div>elysium-starter/</div>
-            <div class="meta">hyperliquid L2 launch starter, dry-run before spend</div>
-            <div><a class="live" href="https://elysium-launcher-production.up.railway.app">[live]</a>
-                 <a href="https://github.com/TrenchyDev">[code]</a></div>
+            <h3>elysium-starter</h3>
+            <div class="desc">Launch starter for the Elysium L2. Talks to the chain directly — wrap, approve, create, with a dry-run before it spends.</div>
+            <div class="tags"><span>evm</span><span>hyperliquid</span><span>next.js</span></div>
+            <div class="row">
+              <a class="live" href="https://elysium-launcher-production.up.railway.app" target="_blank" rel="noopener">▶ RUN DEMO</a>
+              <a class="src" href="https://github.com/TrenchyDev" target="_blank" rel="noopener">&lt;/&gt; SOURCE</a>
+            </div>
           </div>
           <div class="proj">
-            <div>data-utils/</div>
-            <div class="meta">python data processing + validation library</div>
-            <div><a href="https://github.com/TrenchyDev/data-utils">[code]</a></div>
+            <h3>launch-clis</h3>
+            <div class="desc">One-file CLI launchers for pump.fun, pons and letsbonk. No RPC node, no Jito client — keys stay on your machine.</div>
+            <div class="tags"><span>node</span><span>cli</span><span>x3</span></div>
+            <div class="row">
+              <a class="src" href="https://github.com/TrenchyDev" target="_blank" rel="noopener">&lt;/&gt; SOURCE</a>
+            </div>
           </div>
           <div class="proj">
-            <div>unichan/</div>
-            <div class="meta">desktop AI companion, open source</div>
-            <div><a href="https://github.com/TrenchyDev/unichan-mvp">[code]</a></div>
+            <h3>data-utils</h3>
+            <div class="desc">Python utility library for data processing and validation. Small, dependency-light, used across my tooling.</div>
+            <div class="tags"><span>python</span><span>library</span></div>
+            <div class="row">
+              <a class="src" href="https://github.com/TrenchyDev/data-utils" target="_blank" rel="noopener">&lt;/&gt; SOURCE</a>
+            </div>
           </div>
           <div class="proj">
-            <div>launch-clis/</div>
-            <div class="meta">one-file launchers — no rpc node, keys stay local</div>
-            <div><a href="https://github.com/TrenchyDev">[code]</a></div>
+            <h3>unichan</h3>
+            <div class="desc">Desktop AI companion — brain, Chrome extension and a little tamagotchi that lives on your machine. Open source.</div>
+            <div class="tags"><span>electron</span><span>typescript</span><span>llm</span></div>
+            <div class="row">
+              <a class="src" href="https://github.com/TrenchyDev/unichan-mvp" target="_blank" rel="noopener">&lt;/&gt; SOURCE</a>
+            </div>
           </div>
         </div>
 
+        <hr>
         <div class="cmd">cat ~/stack</div>
         <div class="stack">
           <b>lang</b><span>python · typescript · javascript · rust</span>
@@ -132,40 +198,31 @@
           <b>ops</b><span>docker · github actions · linux · railway</span>
         </div>
 
-        <div class="cmd">contact</div>
-        <div class="foot">
-          <span><a href="https://github.com/TrenchyDev">github.com/TrenchyDev</a></span>
-          <span class="bar">OPEN&nbsp;TO&nbsp;WORK</span>
+        <div class="cmd">contact --hire</div>
+        <div class="big">LET'S BUILD SOMETHING.</div>
+        <div class="contact">
+          <a class="btn" href="https://github.com/TrenchyDev" target="_blank" rel="noopener">github.com/TrenchyDev</a>
+          <span class="who">available immediately · remote · us</span>
         </div>
-        <div class="cmd"><span class="cur"></span></div>
+
+        <div class="cmd">_</div>
+        <div><span class="cur"></span></div>
+        <footer>TRENCH · SOFTWARE DEV · PYTHON / TYPESCRIPT / SOLANA · EST. BACKEND</footer>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  const lines = [
-    "TRENCH BIOS v2.6  ·  (c) trenchydev",
-    "",
-    "phosphor 5000 .... <span style='color:#43ff7d'>ok</span>",
-    "memory ........... 640k <span style='color:#43ff7d'>ok</span>",
-    "net .............. up",
-    "",
-    "loading ~/portfolio ..."
+  const lines=[
+    "POST ok · 640K ok · phosphor ok",
+    "net ok · loading ~/portfolio ..."
   ];
-  const boot = document.getElementById("boot");
-  const main = document.getElementById("main");
-  let i = 0;
-  (function next(){
-    if (i < lines.length){
-      const d = document.createElement("div");
-      d.innerHTML = lines[i] || "&nbsp;";
-      boot.appendChild(d);
-      i++; setTimeout(next, i === 1 ? 260 : 95);
-    } else {
-      main.classList.remove("hide");
-      main.classList.add("fade");
-    }
+  const boot=document.getElementById("boot"), main=document.getElementById("main");
+  let i=0;
+  (function go(){
+    if(i<lines.length){const d=document.createElement("div");d.className="who";d.textContent=lines[i];boot.appendChild(d);i++;setTimeout(go,300);}
+    else{main.classList.remove("hide");main.classList.add("fade");}
   })();
 </script>
 </body>
